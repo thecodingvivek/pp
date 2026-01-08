@@ -14,12 +14,17 @@ const BudgetCard = ({ budget = 0, spent = 0, onBudgetSet }) => {
   const percentage = Math.min(100, (spent / budget) * 100);
 
   const handleSetBudget = async () => {
-    if (!newBudget || isNaN(newBudget)) return;
+    const budgetValue = parseFloat(newBudget);
+    
+    // Validate: must be a positive number within reasonable limits
+    if (isNaN(budgetValue) || budgetValue <= 0 || budgetValue > 100000000) {
+      return; // Silently reject invalid input (could add error state for UX)
+    }
+    
     setLoading(true);
-    await onBudgetSet(newBudget);
+    await onBudgetSet(budgetValue); // Send as number, not string
     setLoading(false);
     setIsEditing(false);
-    // Optionally update local state if parent doesn't immediately re-render or if optimistic update needed
   };
 
   const startEditing = () => {
@@ -50,6 +55,8 @@ const BudgetCard = ({ budget = 0, spent = 0, onBudgetSet }) => {
                     value={newBudget}
                     onChange={(e) => setNewBudget(e.target.value)}
                     placeholder="Enter amount"
+                    min="1"
+                    max="100000000"
                     className="w-full bg-white/50 border border-black/10 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-black/30 placeholder:text-black/30 placeholder:font-normal font-bold"
                     autoFocus
                 />
