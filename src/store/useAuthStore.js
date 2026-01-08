@@ -18,7 +18,7 @@ const useAuthStore = create((set) => ({
   checkAuth: async () => {
     set({ isCheckingAuth: true });
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/me`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/me`, {
         method: "GET",
         credentials: "include", // Important to send cookies
       });
