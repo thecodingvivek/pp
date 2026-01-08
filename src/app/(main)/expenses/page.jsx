@@ -188,16 +188,6 @@ export default function ExpensesPage() {
           <p className="text-gray-400 mt-1">Track and manage your financial footprint.</p>
         </div>
         
-        <div className="flex gap-3">
-          <button className="flex items-center gap-2 bg-[#1C1C1E] text-white px-4 py-2.5 rounded-xl border border-gray-800 hover:border-[#D8EFA8] transition-colors">
-            <Filter size={18} />
-            <span>Filter</span>
-          </button>
-          <button className="flex items-center gap-2 bg-[#D8EFA8] text-[#0A0A0A] px-4 py-2.5 rounded-xl font-semibold hover:opacity-90 transition-opacity">
-            <ArrowDownLeft size={18} />
-            <span>Export CSV</span>
-          </button>
-        </div>
       </header>
 
       {/* Transaction List Container */}
