@@ -29,9 +29,10 @@ const useAuthStore = create((set) => ({
       const data = await res.json();
       console.log("Auth response data:", data);
       
-      if (res.ok && data.success) {
-        set({ user: data.user, isAuthenticated: true, isCheckingAuth: false });
-        console.log("Auth successful, user:", data.user);
+      // Backend returns user object directly, not { success, user }
+      if (res.ok && data && data.id) {
+        set({ user: data, isAuthenticated: true, isCheckingAuth: false });
+        console.log("Auth successful, user:", data);
         return true;
       }
     } catch (error) {
