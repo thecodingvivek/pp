@@ -27,6 +27,7 @@ const useAuthStore = create((set) => ({
       
       if (res.ok && data.success) {
         set({ user: data.user, isAuthenticated: true, isCheckingAuth: false });
+        console.log("hell yeah")
         return true;
       }
     } catch (error) {
